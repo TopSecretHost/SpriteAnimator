@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sprite Animator</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha512-Fo3rlrZj/kTcE+WZW7gYPelwA2jJg2m+vKfvZ/PbKAoBo2Dd2gJ8vNz5Fiw5STw6A17U/5R3X0Zx0RkmZMe8PA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script src="https://cdn.jsdelivr.net/npm/jszip/dist/jszip.min.js"></script>
+    <script src="js/gif.js"></script>
+</head>
+<body>
+    <header>
+        <nav class="custom-menu" aria-label="Main Navigation">
+            <ul>
+                <li><a href="#" id="uploadSpriteSheet" aria-label="Upload Sprite Sheet"><i class="fas fa-upload"></i></a></li>
+                <li><a href="#" id="uploadMultiplePhotos" aria-label="Upload Multiple Photos"><i class="fas fa-images"></i></a></li>
+                <li><a href="#" id="resetSetup" aria-label="Reset Setup"><i class="fas fa-redo"></i></a></li>
+                <li><a href="#" id="exportAnimation" aria-label="Export Animation"><i class="fas fa-file-export"></i></a></li>
+                <li><a href="#" id="saveProject" aria-label="Save Project"><i class="fas fa-save"></i></a></li>
+                <li><a href="#" id="loadProject" aria-label="Load Project"><i class="fas fa-folder-open"></i></a></li>
+                <li><a href="#" id="undoAction" aria-label="Undo"><i class="fas fa-undo"></i></a></li>
+                <li><a href="#" id="redoAction" aria-label="Redo"><i class="fas fa-redo"></i></a></li>
+            </ul>
+        </nav>
+    </header>
+    <div class="container">
+        <h1>WebSprite <br> The Lightweight Animation Factory</h1>
+        <p>Currently Supports Exporting PNG Frames & Gif Format. Image/GIFS export with a transparent background.</p>
+        <div class="hud">
+            <div class="hud-panel">
+                <label for="fileInput">Upload Sprite Sheet:</label>
+                <input type="file" id="fileInput" class="hud-input" title="Upload a sprite sheet">
+                <label for="multiFileInput">Upload Multiple Photos [Create Sprite Sheet]:</label>
+                <input type="file" id="multiFileInput" multiple class="hud-input" title="Upload multiple photos to create a sprite sheet">
+            </div>
+            <div class="hud-panel">
+                <label for="frameWidth">Frame Width:</label>
+                <input type="number" id="frameWidth" placeholder="Enter frame width" class="hud-input" title="Enter the width of each frame">
+                <label for="frameHeight">Frame Height:</label>
+                <input type="number" id="frameHeight" placeholder="Enter frame height" class="hud-input" title="Enter the height of each frame">
+            </div>
+            <div class="hud-panel">
+                <label for="frameCount">Frame Count:</label>
+                <input type="number" id="frameCount" placeholder="Enter frame count" readonly class="hud-input" title="The total number of frames (read-only)">
+                <label for="fps">FPS:</label>
+                <input type="number" id="fps" placeholder="Enter frames per second" value="10" class="hud-input" title="Enter the frames per second for the animation">
+            </div>
+            <div class="hud-panel">
+                <label for="gridSnap">Snap to Grid:</label>
+                <input type="checkbox" id="gridSnap" checked title="Enable/disable snapping to grid">
+                <label for="livePreview">Enable Live Preview:</label>
+                <input type="checkbox" id="livePreview" class="hud-input" title="Enable/disable live preview of the animation">
+                <label for="canvasColor">Canvas Color:</label>
+                <input type="color" id="canvasColor" value="#ffffff" class="hud-input" title="Choose the canvas color">
+                <label for="transparentBackground">Transparent Background:</label>
+                <input type="checkbox" id="transparentBackground" checked class="hud-input" title="Enable/disable transparent background for export">
+            </div>
+            <div class="hud-panel">
+                <label for="zoomLevel">Zoom:</label>
+                <input type="range" id="zoomLevel" min="0.5" max="2" step="0.1" value="1" class="hud-input" title="Adjust the zoom level">
+            </div>
+        </div>
+        <div id="toolTips">
+            <h3>Hotkeys</h3>
+            <ul>
+                <li><strong>Left Mouse Click:</strong> Select frame</li>
+                <li><strong>Right Mouse Click:</strong> Deselect frame</li>
+                <li><strong>Middle Mouse Drag:</strong> Pan the canvas</li>
+                <li><strong>Ctrl + Left Mouse Drag:</strong> Move the grid</li>
+                <li><strong>C + Left Mouse Click:</strong> Copy Unique Frame Dimensions</li>
+                <li><strong>V + Left Mouse Click:</strong> Paste unique Frame Dimensions</li>
+                <li><strong>D + Left Mouse Drag:</strong> Drag selected frame</li>
+                <li><strong>Shift + Left Mouse Drag:</strong> Resize selected frame</li>
+            </ul>
+        </div>
+        <div class="main-content">
+            <div class="canvas-container">
+                <canvas id="spriteCanvas" width="800" height="600"></canvas>
+            </div>
+            <div class="preview-container">
+                <canvas id="previewCanvas" width="400" height="300"></canvas>
+            </div>
+        </div>
+    </div>
+    <script src="scripts/frame.js"></script>
+    <script src="scripts/canvas.js"></script>
+    <script src="scripts/export.js"></script>
+    <script src="scripts/controls.js"></script>
+    <script src="scripts/undoRedo.js"></script>
+    <script src="scripts/saveLoad.js"></script>
+    <script src="scripts/timeline.js"></script>
+    <script src="scripts/editing.js"></script>
+</body>
+</html>
